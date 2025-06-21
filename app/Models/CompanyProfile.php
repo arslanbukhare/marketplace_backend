@@ -12,6 +12,8 @@ class CompanyProfile extends Model
         'industry',
         'registration_number',
         'registration_document',
+        'registration_document_status', 
+        'registration_expiry_date',    
         'address',
         'city',
         'state',
@@ -21,11 +23,13 @@ class CompanyProfile extends Model
         'description',
         'logo',
         'contact_phone',
+        'is_contact_phone_verified',
         'verified_at',
     ];
 
     protected $casts = [
         'verified_at' => 'datetime',
+        'registration_expiry_date' => 'date', // ✅ Optional, helps with date parsing
     ];
 
     public function user()
