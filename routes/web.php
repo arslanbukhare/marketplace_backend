@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Controllers\StripeController;
 
 // Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) {
 //     $user = \App\Models\User::findOrFail($id);
@@ -36,3 +37,7 @@ Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) 
 
     return view('email_verified')->with('status', 'success');
 })->middleware(['signed'])->name('verification.verify');
+
+Route::middleware(['web'])->group(function () {
+    Route::get('/payment-success', [StripeController::class, 'handleSuccess']);
+});
